@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1 class="color-picker-header">Color Picker!</h1>
+    <ColorPicker />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ColorPicker from './components/ColorPicker.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    ColorPicker
   }
 }
 </script>
@@ -23,6 +23,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+.color-picker-header { 
+padding-top: .5em;
+margin: 0;
+font-size: 3em;
 }
 </style>
