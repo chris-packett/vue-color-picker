@@ -5,29 +5,22 @@
             </div>
         </div>
         <div class="hsl-sliders">
-            <section class="slider-hue">
-                <section class="caption-style">Hue:</section>
-                <input type="range" min="0" max="360" v-model="hue" />
-            </section>
-            <section class="slider-saturation">
-                <section class="caption-style">Saturation:</section>
-                <input type="range" min="0" max="100" v-model="saturation" />
-            </section>
-            <section class="slider-lightness">
-                <section class="caption-style">Lightness:</section>
-                <input type="range" min="0" max="100" v-model="lightness" />
-            </section>
-            <section class="slider-alpha">
-                <section class="caption-style">Alpha:</section>
-                <input type="range" min="0" max="100" v-model="alpha" />
-            </section>
+            <Slider caption="Hue:" max="360" valueName="hue" :value="hue" v-on:update-value-event="updateValue"/>
+            <Slider caption="Saturation:" max="100" valueName="saturation" :value="saturation" v-on:update-value-event="updateValue"/>
+            <Slider caption="Lightness:" max="100" valueName="lightness" :value="lightness" v-on:update-value-event="updateValue"/>
+            <Slider caption="Alpha:" max="100" valueName="alpha" :value="alpha" v-on:update-value-event="updateValue"/>
         </div>
     </div>
 </template>
 
 <script>
+import Slider from './Slider.vue'
+
 export default {
     name: "color-picker",
+    components: {
+        Slider
+    },
     data: function () {
         return {
             hue: 180,
@@ -43,11 +36,16 @@ export default {
         newAlpha: function () {
             return this.alpha / 100
         }
+    },
+    methods: {
+        updateValue: function (params) {
+            this[params.valueName] = params.value
+        }
     }
 }
 </script>
 
-<style>
+<style scoped>
 .color-palette {
   display: flex;
   justify-content: center;
